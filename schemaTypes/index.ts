@@ -1,1 +1,3 @@
-export const schemaTypes = []
+import aircraft from './aircraft'
+
+export const schemaTypes = [aircraft]
