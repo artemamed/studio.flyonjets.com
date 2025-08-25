@@ -1,11 +1,23 @@
-import {defineType, defineField} from 'sanity'
+// schemaTypes/aircraft.ts
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'aircraft',
   title: 'Aircraft',
   type: 'document',
   fields: [
-    defineField({ name: 'name', type: 'string', validation: r => r.required() }),
+    defineField({
+      name: 'name',
+      type: 'string',
+      title: 'Name (English)',
+      validation: r => r.required(),
+    }),
+    defineField({
+      name: 'nameEs',
+      type: 'string',
+      title: 'Nombre (Español)',
+      validation: r => r.required(),
+    }),
     defineField({
       name: 'slug',
       type: 'slug',
@@ -13,7 +25,6 @@ export default defineType({
       validation: r => r.required(),
     }),
 
-    // New image for dropdowns / structure views
     defineField({
       name: 'structureImage',
       type: 'image',
@@ -22,7 +33,6 @@ export default defineType({
       validation: r => r.required(),
     }),
 
-    // Keep heroImage if your page hero needs it
     defineField({
       name: 'heroImage',
       type: 'image',
@@ -31,7 +41,6 @@ export default defineType({
       validation: r => r.required(),
     }),
 
-    // Numeric hero stats (used to render badges/specs)
     defineField({
       name: 'heroStats',
       title: 'Hero Stats',
@@ -115,19 +124,29 @@ export default defineType({
       ],
     }),
 
-    // SEO (title + description required, image optional)
     defineField({
       name: 'seo',
-      title: 'SEO',
+      title: 'SEO (English)',
       type: 'object',
       fields: [
         defineField({ name: 'title', type: 'string', validation: r => r.required() }),
         defineField({ name: 'description', type: 'text', validation: r => r.required() }),
-        defineField({ name: 'image', type: 'image', options: { hotspot: true } }), // optional
+        defineField({ name: 'image', type: 'image', options: { hotspot: true } }),
       ],
       validation: r => r.required(),
     }),
+    defineField({
+      name: 'seoEs',
+      title: 'SEO (Español)',
+      type: 'object',
+      fields: [
+        defineField({ name: 'title', type: 'string', validation: r => r.required() }),
+        defineField({ name: 'description', type: 'text', validation: r => r.required() }),
+        defineField({ name: 'image', type: 'image', options: { hotspot: true } }),
+      ],
+    }),
   ],
+
   preview: {
     select: {
       title: 'name',
